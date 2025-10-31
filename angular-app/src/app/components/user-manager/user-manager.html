@@ -1,0 +1,77 @@
+<div class="user-manager">
+  <h2>👥 User Management (CRUD Operations)</h2>
+
+  @if (error) {
+  <div class="error" data-testid="error-message">Error: {{ error }}</div>
+  }
+
+  <form (ngSubmit)="onSubmit()" class="user-form" data-testid="user-form">
+    <h3>{{ editingId ? 'Edit User' : 'Add New User' }}</h3>
+    <input
+      type="text"
+      placeholder="Name"
+      [(ngModel)]="formData.name"
+      name="name"
+      required
+      data-testid="input-name"
+    />
+    <input
+      type="email"
+      placeholder="Email"
+      [(ngModel)]="formData.email"
+      name="email"
+      required
+      data-testid="input-email"
+    />
+    <input
+      type="text"
+      placeholder="Role"
+      [(ngModel)]="formData.role"
+      name="role"
+      required
+      data-testid="input-role"
+    />
+    <div class="form-actions">
+      <button type="submit" [disabled]="loading" data-testid="submit-button">
+        {{ loading ? 'Processing...' : editingId ? 'Update User' : 'Add User' }}
+      </button>
+      @if (editingId) {
+      <button type="button" (click)="cancelEdit()" data-testid="cancel-button">Cancel</button>
+      }
+    </div>
+  </form>
+
+  <div class="users-list">
+    <h3>Users List</h3>
+    @if (loading) {
+    <p>Loading...</p>
+    } @if (users.length === 0 && !loading) {
+    <p>No users found</p>
+    }
+    <div class="users-grid" data-testid="users-list">
+      @for (user of users; track user.id) {
+      <div class="user-card" [attr.data-testid]="'user-' + user.id">
+        <h4>{{ user.name }}</h4>
+        <p>📧 {{ user.email }}</p>
+        <p>💼 {{ user.role }}</p>
+        <div class="card-actions">
+          <button
+            (click)="startEdit(user)"
+            class="btn-edit"
+            [attr.data-testid]="'edit-user-' + user.id"
+          >
+            ✏️ Edit
+          </button>
+          <button
+            (click)="deleteUser(user.id!)"
+            class="btn-delete"
+            [attr.data-testid]="'delete-user-' + user.id"
+          >
+            🗑️ Delete
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

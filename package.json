@@ -1,0 +1,38 @@
+{
+  "name": "playwright-demo",
+  "version": "1.0.0",
+  "description": "Playwright E2E testing demo with React, Angular, and Vue.js",
+  "scripts": {
+    "start:api": "cd api-server && npm start",
+    "start:react": "cd react-app && npm run dev",
+    "start:angular": "cd angular-app && npm start",
+    "start:vue": "cd vue-app && npm run dev",
+    "test": "cd playwright-tests && npx playwright test",
+    "test:ui": "cd playwright-tests && npx playwright test --ui",
+    "test:debug": "cd playwright-tests && npx playwright test --debug",
+    "test:react": "cd playwright-tests && npx playwright test react/",
+    "test:react:basic": "cd playwright-tests && npx playwright test react/react-app.spec.ts",
+    "test:react:crud": "cd playwright-tests && npx playwright test react/react-crud.spec.ts",
+    "test:angular": "cd playwright-tests && npx playwright test angular/",
+    "test:angular:basic": "cd playwright-tests && npx playwright test angular/angular-app.spec.ts",
+    "test:angular:crud": "cd playwright-tests && npx playwright test angular/angular-crud.spec.ts",
+    "test:vue": "cd playwright-tests && npx playwright test vue/",
+    "test:vue:basic": "cd playwright-tests && npx playwright test vue/vue-app.spec.ts",
+    "test:vue:crud": "cd playwright-tests && npx playwright test vue/vue-crud.spec.ts",
+    "test:report": "cd playwright-tests && npx playwright show-report",
+    "codegen:react": "cd playwright-tests && npx playwright codegen http://localhost:5173",
+    "codegen:angular": "cd playwright-tests && npx playwright codegen http://localhost:4200",
+    "codegen:vue": "cd playwright-tests && npx playwright codegen http://localhost:5174"
+  },
+  "keywords": [
+    "playwright",
+    "testing",
+    "e2e",
+    "react",
+    "angular",
+    "vue",
+    "vite"
+  ],
+  "author": "",
+  "license": "MIT"
+}

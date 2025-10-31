@@ -1,0 +1,68 @@
+{
+  "users": [
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "role": "Designer"
+    },
+    {
+      "id": "3",
+      "name": "Bob Johnson",
+      "email": "bob.johnson@example.com",
+      "role": "Manager"
+    },
+    {
+      "id": "2f1e",
+      "name": "Test User",
+      "email": "test@example.com",
+      "role": "Tester"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Laptop",
+      "price": 999.99,
+      "category": "Electronics",
+      "inStock": true
+    },
+    {
+      "id": "2",
+      "name": "Mouse",
+      "price": 29.99,
+      "category": "Electronics",
+      "inStock": true
+    },
+    {
+      "id": "3",
+      "name": "Keyboard",
+      "price": 79.99,
+      "category": "Electronics",
+      "inStock": false
+    }
+  ],
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Complete project documentation",
+      "description": "Write comprehensive documentation for the project",
+      "completed": false,
+      "priority": "high"
+    },
+    {
+      "id": "2",
+      "title": "Fix bug in user authentication",
+      "description": "Resolve login issues reported by users",
+      "completed": true,
+      "priority": "critical"
+    },
+    {
+      "id": "3",
+      "title": "Update dependencies",
+      "description": "Update all npm packages to latest versions",
+      "completed": false,
+      "priority": "medium"
+    }
+  ]
+}
