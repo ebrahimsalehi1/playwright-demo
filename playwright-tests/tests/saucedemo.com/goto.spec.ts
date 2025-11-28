@@ -40,10 +40,10 @@ test.describe("SauceDemo General Tests", () => {
   });
 
   /**
-  In Playwright, you can take a screenshot of your current page.
-  This action is very beneficial whenever you want to show an error.
+   * In Playwright, you can take a screenshot of your current page.
+   * This action is very beneficial whenever you want to show an error.
 
-  Here is a sample of how to do that:
+   * Here is a sample of how to do that:
  */
 
   test("take a screenshot", async ({ page }) => {
@@ -53,8 +53,8 @@ test.describe("SauceDemo General Tests", () => {
   });
 
   /**
-   In Playwright, one way to find an element in the DOM is to use getByRole.
-   In this sample, the element is <input type="submit" value="Login">, so the role is 'button' and the name is 'Login'.
+   * In Playwright, one way to find an element in the DOM is to use getByRole.
+   * In this sample, the element is <input type="submit" value="Login">, so the role is 'button' and the name is 'Login'.
    */
 
   test("get by role", async ({ page }) => {
@@ -65,14 +65,49 @@ test.describe("SauceDemo General Tests", () => {
   });
 
   /**
-   In Playwright, we can find an element by its placeholder attribute.
-   In this example, the element has a placeholder="Username" attribute.
+   * In Playwright, we can find an element by its placeholder attribute.
+   * In this example, the element has a placeholder="Username" attribute.
+   */
+
+  /**
+   * In Playwright, sometimes we can not see the result of our tests execution.
+   * To solve this problem, we can pause the test execution at any point.
    */
 
   test("get by placeholder", async ({ page }) => {
     await page.goto("https://www.saucedemo.com/");
 
     const usernameInput = page.getByPlaceholder("Username");
+    await expect(usernameInput).toBeVisible();
+    await usernameInput.fill("standard_user");
+
+    await page.pause();
+  });
+
+  /**
+    In Playwright, to find an element by its ID, 
+    simply use # before the ID name. 
+    Since IDs should be unique, this will locate the element precisely.
+   */
+
+  test("get by id", async ({ page }) => {
+    await page.goto("https://www.saucedemo.com/");
+
+    const usernameInput = page.locator("#user-name");
+    await expect(usernameInput).toBeVisible();
+    await usernameInput.fill("standard_user");
+
+    await page.pause();
+  });
+
+  /**
+   In Playwright, to find an element by its name attribute, 
+   use [name='value'] in a CSS selector, similar to querySelector
+   */
+  test("get by name", async ({ page }) => {
+    await page.goto("https://www.saucedemo.com/");
+
+    const usernameInput = page.locator("input[name='user-name']");
     await expect(usernameInput).toBeVisible();
     await usernameInput.fill("standard_user");
   });
