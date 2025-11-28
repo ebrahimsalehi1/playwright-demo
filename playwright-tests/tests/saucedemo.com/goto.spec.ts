@@ -111,4 +111,16 @@ test.describe("SauceDemo General Tests", () => {
     await expect(usernameInput).toBeVisible();
     await usernameInput.fill("standard_user");
   });
+
+  /**
+    In Playwright, to find an element by its class name,
+    use a dot (.) before the class name in the CSS selector.
+   */
+
+  test("get by classname", async ({ page }) => {
+    await page.goto("https://www.saucedemo.com/");
+
+    const usernameInput = page.locator(".input_error.form_input");
+    await expect(usernameInput).toHaveCount(2);
+  });
 });
