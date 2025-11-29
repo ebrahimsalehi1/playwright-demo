@@ -10,9 +10,14 @@ import test, { expect } from "@playwright/test";
  */
 
 test.describe("SauceDemo General Tests", () => {
-  test("has title", async ({ page }) => {
+  /**
+   * If you want to perform repetitive actions before each test, simply use test.beforeEach.
+   */
+  test.beforeEach(async ({ page }) => {
     await page.goto("https://www.saucedemo.com/");
+  });
 
+  test("has title", async ({ page }) => {
     await test.expect(page).toHaveTitle(/swag labs/i);
   });
 
@@ -27,8 +32,6 @@ test.describe("SauceDemo General Tests", () => {
    */
 
   test("should login successfully", async ({ page }) => {
-    await page.goto("https://www.saucedemo.com/");
-
     await page.fill("#user-name", "standard_user");
     await page.fill("#password", "secret_sauce");
 
@@ -47,8 +50,6 @@ test.describe("SauceDemo General Tests", () => {
  */
 
   test("take a screenshot", async ({ page }) => {
-    await page.goto("https://www.saucedemo.com/");
-
     await page.screenshot({ path: "sample.png" });
   });
 
@@ -58,7 +59,6 @@ test.describe("SauceDemo General Tests", () => {
    */
 
   test("get by role", async ({ page }) => {
-    await page.goto("https://www.saucedemo.com/");
     const loginButton = page.getByRole("button", { name: "Login" });
     expect(loginButton).toBeVisible();
     await loginButton.click();
@@ -75,8 +75,6 @@ test.describe("SauceDemo General Tests", () => {
    */
 
   test("get by placeholder", async ({ page }) => {
-    await page.goto("https://www.saucedemo.com/");
-
     const usernameInput = page.getByPlaceholder("Username");
     await expect(usernameInput).toBeVisible();
     await usernameInput.fill("standard_user");
@@ -91,8 +89,6 @@ test.describe("SauceDemo General Tests", () => {
    */
 
   test("get by id", async ({ page }) => {
-    await page.goto("https://www.saucedemo.com/");
-
     const usernameInput = page.locator("#user-name");
     await expect(usernameInput).toBeVisible();
     await usernameInput.fill("standard_user");
@@ -105,8 +101,6 @@ test.describe("SauceDemo General Tests", () => {
    use [name='value'] in a CSS selector, similar to querySelector
    */
   test("get by name", async ({ page }) => {
-    await page.goto("https://www.saucedemo.com/");
-
     const usernameInput = page.locator("input[name='user-name']");
     await expect(usernameInput).toBeVisible();
     await usernameInput.fill("standard_user");
@@ -118,9 +112,18 @@ test.describe("SauceDemo General Tests", () => {
    */
 
   test("get by classname", async ({ page }) => {
-    await page.goto("https://www.saucedemo.com/");
-
     const usernameInput = page.locator(".input_error.form_input");
     await expect(usernameInput).toHaveCount(2);
+  });
+
+  /**
+   * If we want to find an element with a data-test attribute,
+   * we can use page.locator() as shown in the example below.
+   */
+  test("find a data-test attribute", async ({ page }) => {
+    const loginButtonSelector = "[data-test='login-button']";
+    const loginButton = page.locator(loginButtonSelector);
+    await expect(loginButton).toBeVisible();
+    await loginButton.click();
   });
 });
