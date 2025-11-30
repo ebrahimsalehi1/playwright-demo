@@ -32,8 +32,12 @@ test.describe("SauceDemo General Tests", () => {
    */
 
   test("should login successfully", async ({ page }) => {
-    await page.fill("#user-name", "standard_user");
-    await page.fill("#password", "secret_sauce");
+    // Using element locator with fill() method
+    const usernameInput = page.locator("#user-name");
+    const passwordInput = page.locator("#password");
+
+    await usernameInput.fill("standard_user");
+    await passwordInput.fill("secret_sauce");
 
     expect(page.locator("#login-button")).toBeVisible();
 
@@ -125,5 +129,31 @@ test.describe("SauceDemo General Tests", () => {
     const loginButton = page.locator(loginButtonSelector);
     await expect(loginButton).toBeVisible();
     await loginButton.click();
+  });
+
+  /**
+   * It is not recommended in Playwright,
+   * but For finding an element in DOM such as normal way in Browser,
+   * you can use page.evaluate
+   */
+
+  test("page evaluate", async ({ page }) => {
+    await page.goto("https://www.saucedemo.com/");
+    await page.evaluate(() => {
+      document
+        .querySelector("#user-name")
+        ?.setAttribute("value", "standard_user");
+    });
+  });
+
+  /**
+   * Finding elements based on the property is doable with page.locator.
+   * Please see the example here:
+   */
+  test("find by property", async ({ page }) => {
+    await page.goto("https://www.saucedemo.com/");
+    const selector = "input[autocorrect='off']";
+    const elements = page.locator(selector);
+    expect(elements).toHaveCount(2);
   });
 });
