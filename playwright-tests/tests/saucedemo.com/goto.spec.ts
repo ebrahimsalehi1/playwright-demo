@@ -156,4 +156,45 @@ test.describe("SauceDemo General Tests", () => {
     const elements = page.locator(selector);
     expect(elements).toHaveCount(2);
   });
+
+  /**
+   * If you want to wait until a page reaches a specific loading state,
+   * you can use page.waitForLoadState method.
+   * 'networkidle' waits for the network to be idle
+   */
+  test("page.waitForLoadState", async ({ page }) => {
+    await page.goto("https://www.saucedemo.com/");
+    await page.waitForLoadState("networkidle");
+  });
+
+  /**
+   * If you want to ensure that the content of the string contains an expected substring,
+   * you can use toContain().
+   */
+  test("toContain", () => {
+    const value = "text1 text2 text3";
+    expect(value).toContain("text1 text2");
+  });
+
+  /**
+   * For ensuring that the value is false in a boolean context,
+   * you can use toBeFalsy().
+   * Some values such as 0, '', null, undefined, and NaN are falsy.
+   */
+  test("toBeFalsy", () => {
+    let value = undefined;
+    expect(value).toBeFalsy();
+
+    value = null;
+    expect(value).toBeFalsy();
+
+    value = 0;
+    expect(value).toBeFalsy();
+
+    value = "";
+    expect(value).toBeFalsy();
+
+    value = false;
+    expect(value).toBeFalsy();
+  });
 });
