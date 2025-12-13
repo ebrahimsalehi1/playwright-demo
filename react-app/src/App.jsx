@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import UserManager from "./components/UserManager";
+import { Elements } from "./components/elements";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -28,6 +29,8 @@ function App() {
       </div>
 
       <UserManager />
+
+      <Elements />
     </>
   );
 }
