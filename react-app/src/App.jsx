@@ -4,6 +4,8 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import UserManager from "./components/UserManager";
 import { Elements } from "./components/elements";
+import Component1 from "./components/Component1";
+import Component2 from "./components/Component2";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -31,6 +33,9 @@ function App() {
       <UserManager />
 
       <Elements />
+
+      <Component1 />
+      <Component2 checked />
     </>
   );
 }
